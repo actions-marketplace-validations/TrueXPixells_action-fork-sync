@@ -1,0 +1,20 @@
+name: "Sync your forks"
+author: TrueXPixells
+description: "Update your forks to their main repo"
+inputs:
+    source-url:
+        description: "The source clone URL"
+        required: true
+    fork-url:
+        description: "The fork git URL"
+        required: true
+
+branding:
+    icon: "git-branch"
+    color: blue
+runs:
+    using: "docker"
+    image: "docker://TrueXPixells/action-fork-sync:v1.0.0"
+    args:
+        - "${{ inputs.source-url }}"
+        - "${{ inputs.fork-url }}"
