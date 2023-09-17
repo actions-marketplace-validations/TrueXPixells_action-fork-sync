@@ -1,5 +1,5 @@
 name: "Keep sync your forks"
-author: TrueXPixells
+author: truexpixells
 description: "Update your forks to their main repo"
 inputs:
     source-url:
@@ -14,7 +14,7 @@ branding:
     color: blue
 runs:
     using: "docker"
-    image: "docker://TrueXPixells/action-fork-sync:v1.0.0"
+    image: "docker://truexpixells/action-fork-sync:v1.0.0"
     args:
         - "${{ inputs.source-url }}"
         - "${{ inputs.fork-url }}"
