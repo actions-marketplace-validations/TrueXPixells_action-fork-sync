@@ -13,8 +13,20 @@ branding:
     icon: "git-branch"
     color: blue
 runs:
-    using: "docker"
-    image: "docker://truexpixells/action-fork-sync:v1.0.0"
-    args:
-        - "${{ inputs.source-url }}"
-        - "${{ inputs.fork-url }}"
+    using: "composite"
+    steps:
+        - name: Run
+          shell: bash
+          run: |
+              if [ ! -d .cloneDir-source ]; then
+                  git clone --bare "${{ inputs.source-url }}" ".cloneDir-source"
+                  if [ ! -d .cloneDir-source ]; then
+                     echo "::error The directory was not created, cloning must have failed.";
+                     exit 1;
+                  fi
+                  cd ".cloneDir-source"
+              else
+                  cd ".cloneDir-source"
+                  git fetch --all -p -P
+              fi
+              git push "${{ inputs.fork-url }}"
