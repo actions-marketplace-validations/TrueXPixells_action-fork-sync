@@ -29,4 +29,4 @@ runs:
                   cd ".cloneDir-source"
                   git fetch --all -p -P
               fi
-              git push "${{ inputs.fork-url }}"
+              git push --mirror -f "${{ inputs.fork-url }}"
